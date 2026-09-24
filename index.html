@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TRTBR — Take Risk To Become Rich</title>
-<meta name="description" content="TRTBR streetwear — Take Risk To Become Rich.">
+<title>TRTBR — Take Risks To Become Rich</title>
+<meta name="description" content="TRTBR streetwear — Take Risks To Become Rich.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
@@ -35,7 +35,7 @@ footer{border-top:1px solid #222;padding:28px 0;color:#777}.footer-row{display:f
 <section class="hero paused" id="hero" aria-label="TRTBR animated hero">
   <canvas class="hero-canvas" id="heroCanvas"></canvas>
   <div class="hero-ui">
-    <div class="hero-kicker">TAKE <span>RISK</span> TO BECOME <span>RICH</span></div>
+    <div class="hero-kicker">TAKE <span>RISKS</span> TO BECOME <span>RICH</span></div>
     <div class="hero-title">TRTBR</div>
     <button class="hero-cta" id="enterBtn" type="button">ENTER TRTBR &nbsp;→</button>
   </div>
@@ -44,17 +44,17 @@ footer{border-top:1px solid #222;padding:28px 0;color:#777}.footer-row{display:f
   <audio id="trtbrAudio" preload="auto" loop src="assets/trtbr-music.mp3"></audio>
 </section>
 <section class="collection" id="shop"><div class="container">
-  <div class="collection-head"><div><span class="collection-kicker">THE COLLECTION</span><h2>LATEST DROP</h2></div><p class="collection-intro">Risk it. Build it. Wear it. TRTBR streetwear for your own lane.</p></div>
+  <div class="collection-head"><div><span class="collection-kicker">THE COLLECTION</span><h2>LATEST DROP</h2></div><p class="collection-intro">Take risks. Build it. Wear it. TRTBR streetwear for your own lane.</p></div>
   <div class="products" id="products"></div>
 </div></section>
-<section class="about" id="about"><div class="container about-grid"><div><div class="eyebrow">THE MOVEMENT</div><h2>TAKE RISKS.<br>BECOME RICH.</h2><p>TRTBR means <strong>Take Risk To Become Rich</strong>. The brand is built around ambition, confidence and moving with purpose.</p></div><div class="manifesto">WEAR THE RISK.<br>OWN THE MOVE.<br>BUILD YOUR LEGACY.</div></div></section>
+<section class="about" id="about"><div class="container about-grid"><div><div class="eyebrow">THE MOVEMENT</div><h2>TAKE RISKS.<br>BECOME RICH.</h2><p>TRTBR means <strong>Take Risks To Become Rich</strong>. The brand is built around ambition, confidence and moving with purpose.</p></div><div class="manifesto">WEAR THE RISK.<br>OWN THE MOVE.<br>BUILD YOUR LEGACY.</div></div></section>
 <section class="contact" id="contact"><div class="container"><div class="eyebrow">CONNECT</div><h2>CONTACT TRTBR</h2><div class="contact-grid"><div class="contact-box"><h3>FACEBOOK</h3><p>Orders, inquiries and brand updates.</p><a class="btn" target="_blank" href="https://www.facebook.com/gwapogiiiofficial">MESSAGE US</a></div><div class="contact-box"><h3>ORDER THROUGH MESSENGER</h3><p>Add your item to the cart, prepare your order details, then send them to TRTBR.</p><button class="btn" onclick="openCart()">VIEW CART</button></div></div></div></section>
 </main>
-<footer><div class="container footer-row"><div>© 2026 TRTBR — Take Risk To Become Rich</div><a class="facebook" target="_blank" href="https://www.facebook.com/gwapogiiiofficial">Facebook</a></div></footer>
-<div class="modal" id="productModal"><div class="modal-card"><button class="modal-close" onclick="closeProduct()">×</button><div class="modal-photo"><img id="modalImage" src="" alt="Product"></div><div class="modal-info"><div class="eyebrow">TRTBR / LATEST DROP</div><h2 id="modalName"></h2><div class="modal-price" id="modalPrice"></div><p>Take Risk To Become Rich v1. Available in sizes M to 2XL.</p><div class="size-list" id="sizeList"></div><div class="qty"><button onclick="changeQty(-1)">−</button><span id="modalQty">1</span><button onclick="changeQty(1)">+</button></div><div class="modal-actions"><button class="btn" onclick="addSelected()">ADD TO CART</button><button class="btn outline" onclick="buySelected()">BUY NOW</button></div></div></div></div>
+<footer><div class="container footer-row"><div>© 2026 TRTBR — Take Risks To Become Rich</div><a class="facebook" target="_blank" href="https://www.facebook.com/gwapogiiiofficial">Facebook</a></div></footer>
+<div class="modal" id="productModal"><div class="modal-card"><button class="modal-close" onclick="closeProduct()">×</button><div class="modal-photo"><img id="modalImage" src="" alt="Product"></div><div class="modal-info"><div class="eyebrow">TRTBR / LATEST DROP</div><h2 id="modalName"></h2><div class="modal-price" id="modalPrice"></div><p>Take Risks To Become Rich v1. Available in sizes M to 2XL.</p><div class="size-list" id="sizeList"></div><div class="qty"><button onclick="changeQty(-1)">−</button><span id="modalQty">1</span><button onclick="changeQty(1)">+</button></div><div class="modal-actions"><button class="btn" onclick="addSelected()">ADD TO CART</button><button class="btn outline" onclick="buySelected()">BUY NOW</button></div></div></div></div>
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div><aside class="cart-panel" id="cartPanel"><div class="cart-head"><h2>YOUR CART</h2><button class="close" onclick="closeCart()">×</button></div><div class="cart-items" id="cartItems"></div><div class="cart-foot"><div class="total"><span>TOTAL</span><span id="cartTotal">₱0</span></div><button class="btn" style="width:100%" onclick="prepareOrder()">PREPARE ORDER</button><div class="order" id="orderBox"><textarea id="orderText" readonly></textarea><button class="btn" style="width:100%;margin-top:10px" onclick="copyOrder()">COPY ORDER</button><a class="btn outline" style="display:block;text-align:center;margin-top:10px" target="_blank" href="https://m.me/gwapogiiiofficial">OPEN MESSENGER</a></div></div></aside>
 <script>
-const products=[{id:1,name:'Take Risk To Become Rich v1',price:599,sizes:['M','L','XL','2XL'],image:'assets/product-v1.png',badge:'NEW'}];
+const products=[{id:1,name:'Take Risks To Become Rich v1',price:599,sizes:['M','L','XL','2XL'],image:'assets/product-v1.png',badge:'NEW'}];
 let cart=JSON.parse(localStorage.getItem('trtbr-cart')||'[]'), selected=null, size='M', modalQty=1;
 const peso=n=>'₱'+Number(n).toLocaleString('en-PH');
 function renderProducts(){document.getElementById('products').innerHTML=products.map(p=>`<article class="card"><div class="product-photo"><img src="${p.image}" alt="${p.name}"><span class="badge">${p.badge}</span></div><div class="card-body"><h3>${p.name}</h3><div class="price">${peso(p.price)}</div><div class="sizes">M / L / XL / 2XL</div><div class="actions"><button class="btn" onclick="openProduct(${p.id})">VIEW PRODUCT</button><button class="btn outline" onclick="quickAdd(${p.id})">ADD TO CART</button></div></div></article>`).join('')}
@@ -85,6 +85,8 @@ document.getElementById('productModal').addEventListener('click',e=>{if(e.target
   const img=new Image(); img.src='assets/trtbr-hero.png';
   const audio=document.getElementById('trtbrAudio'), enter=document.getElementById('enterBtn'), sound=document.getElementById('soundBtn');
   const soundText=document.getElementById('soundText'), musicState=document.getElementById('musicState'), hero=document.getElementById('hero');
+  audio.addEventListener('error',()=>{musicState.textContent='MUSIC FILE NOT FOUND'; soundText.textContent='NO MUSIC';});
+  audio.load();
   let W=0,H=0,dpr=1,t=0,started=false,analyser=null,data=null,source=null,level=0,smooth=0;
   const particles=Array.from({length:75},()=>({x:Math.random(),y:Math.random(),r:.4+Math.random()*2.2,v:.08+Math.random()*.35,a:.08+Math.random()*.5}));
   function resize(){dpr=Math.min(devicePixelRatio||1,2);W=canvas.clientWidth;H=canvas.clientHeight;canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
@@ -100,7 +102,7 @@ document.getElementById('productModal').addEventListener('click',e=>{if(e.target
     try{
       if(!source){const AC=window.AudioContext||window.webkitAudioContext; if(AC){const ac=new AC(); analyser=ac.createAnalyser(); analyser.fftSize=256; data=new Uint8Array(analyser.frequencyBinCount); source=ac.createMediaElementSource(audio); source.connect(analyser); analyser.connect(ac.destination);}}
       await audio.play(); started=true; hero.classList.remove('paused'); sound.classList.add('on'); soundText.textContent='SOUND ON'; musicState.textContent='PLAYING';
-    }catch(e){musicState.textContent='TAP TO PLAY'}
+    }catch(e){console.error('TRTBR music error:',e);musicState.textContent='TAP TO PLAY';soundText.textContent='SOUND OFF'}
   }
   async function toggle(){if(audio.paused)await startMusic();else{audio.pause();sound.classList.remove('on');soundText.textContent='SOUND OFF';musicState.textContent='PAUSED'}}
   enter.addEventListener('click',async()=>{await startMusic();document.getElementById('shop').scrollIntoView({behavior:'smooth',block:'start'})});
