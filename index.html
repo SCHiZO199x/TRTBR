@@ -79,6 +79,14 @@ body.store-entered main{min-height:calc(100vh - 92px)}
 nav a,.btn,.cart,.price,.sizes,.collection-intro,.about p,.contact-box p,footer,.music-label,.sound-control,.music-status{font-family:Oswald,Arial,sans-serif}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.trtbr-marquee-track{animation:none}.reveal{opacity:1;transform:none}}
 
+
+/* V6 separate-page experience: Shop / About / Contact */
+body.store-entered.page-shop .about,body.store-entered.page-shop .contact{display:none!important}
+body.store-entered.page-about .collection,body.store-entered.page-about .contact,body.store-entered.page-about .trtbr-marquee{display:none!important}
+body.store-entered.page-contact .collection,body.store-entered.page-contact .about,body.store-entered.page-contact .trtbr-marquee{display:none!important}
+body.store-entered.page-about .about,body.store-entered.page-contact .contact{min-height:calc(100vh - 92px);display:flex;align-items:center}
+.page-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}.page-actions .btn{min-width:170px;text-align:center}
+
 </style>
 </head>
 <body>
@@ -111,8 +119,8 @@ nav a,.btn,.cart,.price,.sizes,.collection-intro,.about p,.contact-box p,footer,
   <div class="collection-head"><div><span class="collection-kicker">THE COLLECTION</span><h2>LATEST DROP</h2></div><p class="collection-intro">Risks build moves. Wear the mindset. TRTBR streetwear for your own lane.</p></div>
   <div class="products" id="products"></div>
 </div></section>
-<section class="about" id="about"><div class="container about-grid"><div><div class="eyebrow">THE MOVEMENT</div><h2>TAKE RISKS.<br>BECOME RICH.</h2><p>TRTBR means <strong>Take Risks To Become Rich</strong>. The brand is built around ambition, confidence and moving with purpose.</p></div><div class="manifesto">WEAR THE RISKS.<br>OWN THE MOVE.<br>BUILD YOUR LEGACY.</div></div></section>
-<section class="contact" id="contact"><div class="container"><div class="eyebrow">CONNECT</div><h2>CONTACT TRTBR</h2><div class="contact-grid"><div class="contact-box"><h3>FACEBOOK</h3><p>Orders, inquiries and brand updates.</p><a class="btn" target="_blank" href="https://www.facebook.com/gwapogiiiofficial">MESSAGE US</a></div><div class="contact-box"><h3>ORDER THROUGH MESSENGER</h3><p>Add your item to the cart, prepare your order details, then send them to TRTBR.</p><button class="btn" onclick="openCart()">VIEW CART</button></div></div></div></section>
+<section class="about" id="about"><div class="container about-grid"><div><div class="eyebrow">THE MOVEMENT</div><h2>TAKE RISKS.<br>BECOME RICH.</h2><p>TRTBR means <strong>Take Risks To Become Rich</strong>. The brand is built around ambition, confidence and moving with purpose.</p><div class="page-actions"><a class="btn page-nav" href="#shop">SHOP THE DROP →</a><a class="btn page-nav" href="#contact">CONTACT TRTBR →</a></div></div><div class="manifesto">WEAR THE RISKS.<br>OWN THE MOVE.<br>BUILD YOUR LEGACY.</div></div></section>
+<section class="contact" id="contact"><div class="container"><div class="eyebrow">CONNECT</div><h2>CONTACT TRTBR</h2><div class="contact-grid"><div class="contact-box"><h3>FACEBOOK</h3><p>Orders, inquiries and brand updates.</p><a class="btn" target="_blank" href="https://www.facebook.com/gwapogiiiofficial">MESSAGE US</a></div><div class="contact-box"><h3>ORDER THROUGH MESSENGER</h3><p>Add your item to the cart, prepare your order details, then send them to TRTBR.</p><button class="btn" onclick="openCart()">VIEW CART</button></div></div><div class="page-actions"><a class="btn page-nav" href="#shop">← BACK TO SHOP</a><a class="btn page-nav" href="#about">ABOUT TRTBR →</a></div></div></section>
 </main>
 <footer><div class="container footer-row"><div>© 2026 TRTBR — Take Risks To Become Rich</div><a class="facebook" target="_blank" href="https://www.facebook.com/gwapogiiiofficial">Facebook</a></div></footer>
 
@@ -183,11 +191,9 @@ document.getElementById('productModal').addEventListener('click',e=>{if(e.target
     const loader=document.getElementById('pageLoader');
     loader.classList.add('show');
     setTimeout(()=>{
-      document.body.classList.add('store-entered');
-      history.replaceState(null,'','#shop');
-      window.scrollTo(0,0);
       loader.classList.remove('show');
-      setTimeout(()=>document.getElementById('shop').scrollIntoView({block:'start'}),40);
+      if(window.trtbrSetPage) window.trtbrSetPage('shop',false);
+      else {document.body.classList.add('store-entered','page-shop');history.replaceState(null,'','#shop');window.scrollTo(0,0);}
     },650);
   });
   sound.addEventListener('click',toggle);
@@ -197,10 +203,31 @@ document.getElementById('productModal').addEventListener('click',e=>{if(e.target
 </script>
 
 <script>
-// Page-style navigation while keeping TRTBR Radio uninterrupted.
-document.querySelectorAll('a[href="#home"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.body.classList.remove('store-entered');history.replaceState(null,'','#home');window.scrollTo(0,0)}));
-document.querySelectorAll('a[href="#shop"],a[href="#about"],a[href="#contact"]').forEach(a=>a.addEventListener('click',e=>{document.body.classList.add('store-entered')}));
-if(location.hash && location.hash!=='#home') document.body.classList.add('store-entered');
+// Separate-page style navigation with a TRTBR loading transition. Music stays uninterrupted.
+(function(){
+  const loader=document.getElementById('pageLoader');
+  const pages=['shop','about','contact'];
+  function setPage(page,withLoad=true){
+    const go=()=>{
+      document.body.classList.add('store-entered');
+      pages.forEach(p=>document.body.classList.remove('page-'+p));
+      document.body.classList.add('page-'+page);
+      history.replaceState(null,'','#'+page);
+      window.scrollTo(0,0);
+      document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+page));
+      if(loader) loader.classList.remove('show');
+    };
+    if(withLoad&&loader){loader.classList.add('show');setTimeout(go,650)}else go();
+  }
+  function home(withLoad=true){
+    const go=()=>{document.body.classList.remove('store-entered','page-shop','page-about','page-contact');history.replaceState(null,'','#home');window.scrollTo(0,0);document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#home'));if(loader)loader.classList.remove('show')};
+    if(withLoad&&loader){loader.classList.add('show');setTimeout(go,650)}else go();
+  }
+  document.querySelectorAll('a[href="#home"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();home(true)}));
+  document.querySelectorAll('a[href="#shop"],a[href="#about"],a[href="#contact"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();setPage(a.getAttribute('href').slice(1),true)}));
+  const hash=location.hash.slice(1);if(pages.includes(hash))setPage(hash,false);
+  window.trtbrSetPage=setPage;
+})();
 </script>
 
 <script>
